@@ -2,6 +2,18 @@
 
 #include "linear_static_list.h"
 
+/*
+    GOODS:
+        - Fast access to the elements;
+        - The same time spend to access an element;
+        - Easiness when changing informations;
+
+    BADS:
+        - Fixed length;
+        - Difficulty when inserting/deleting an element:
+          it's necessary move each element on insert/delete op;
+*/
+
 
 struct list {
     int qty;
@@ -38,9 +50,9 @@ int is_empty(List* li) {
 }
 
 int append(List* li, struct person p) {
-    if (li == NULL) 
+    if (li == NULL)
         return 0;
-    if is_full(li) 
+    if is_full(li)
         return 0;
     li->data[li->qty] = p;
     li->qty++;
@@ -52,7 +64,7 @@ int prepend(List* li, struct person p) {
         return 0;
     if is_full(li)
         return 0;
-    
+
     int i = li->qty - 1;
     for (; i >= 0; i--) {
         li->data[i + 1] = li->data[i];
@@ -71,7 +83,7 @@ int ordered_insert(List* li, struct person p) {
     int i = 0;
     while ((i < li->qty) && (li->data[i].num < p->num))
         i++;
-    
+
     int k = li->qty - 1;
     for (; k >= i; k--)
         li->data[k + 1] = li->data[k];
@@ -117,7 +129,7 @@ int search(List* list, int num, struct person *p) {
     int i = 0;
     while((i < li->qty) && (li->data[i].num != num))
         i++;
-    
+
     if (i == li->qty)
         return 0;
 
