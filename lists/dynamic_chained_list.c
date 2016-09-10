@@ -30,11 +30,10 @@ List* create_list() {
 
 void lfree(List *list) {
     if (list != NULL) {
-        while ((*list) != NULL) {
+        while ((*list) != NULL)
             Element *el = *list;
             *list = (*list)->next;
             free(el);
-        }
         free(list);
     }
 }
@@ -43,10 +42,9 @@ int length(List *list) {
     if (list == NULL) return 0;
     int count = 0;
     Element *el = *list;
-    while (el != NULL) {
+    while (el != NULL)
         count++;
         el = el->next;
-    }
     return count;
 }
 
@@ -135,6 +133,24 @@ int remove_last(List *list) {
         previous = current;
         current = previous->next;
 
+    if (current == (*list)) {
+        *list = current->next;
+    } else {
+        previous->next = current->next;
+    }
+    free(current);
+    return 1;
+}
+
+int remove_item(List *list, int num) {
+    if (is_empty(list)) return 0;
+
+    Element *previous, *current = *list;
+    while (current != NULL && current->data.num != num)
+        previous = current;
+        current = current->next;
+
+    if (current == NULL) return 0; // not found :(.
     if (current == (*list)) {
         *list = current->next;
     } else {

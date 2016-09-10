@@ -66,9 +66,8 @@ int prepend(List* li, struct person p) {
         return 0;
 
     int i = li->qty - 1;
-    for (; i >= 0; i--) {
+    for (; i >= 0; i--)
         li->data[i + 1] = li->data[i];
-    }
     li->data[0] = p;
     li->qty++;
     return 1;

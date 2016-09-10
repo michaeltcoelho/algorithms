@@ -27,3 +27,5 @@ int ordered_insert(List *list, struct person p);
 int remove_first(List *list);
 
 int remove_last(List *list);
+
+int remove_item(List *list, int num);
