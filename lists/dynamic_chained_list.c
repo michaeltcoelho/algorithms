@@ -30,10 +30,11 @@ List* create_list() {
 
 void lfree(List *list) {
     if (list != NULL) {
-        while ((*list) != NULL)
+        while ((*list) != NULL) {
             Element *el = *list;
             *list = (*list)->next;
             free(el);
+        }
         free(list);
     }
 }
@@ -157,5 +158,35 @@ int remove_item(List *list, int num) {
         previous->next = current->next;
     }
     free(current);
+    return 1;
+}
+
+int search_pos(List *list, int pos, struct person *p) {
+    if (is_empty(list) || pos <= 0) return 0;
+    Element *el = *list;
+    int i = 0;
+    while (el != NULL && i < pos)
+        el = el->next;
+        i++;
+    if (el == NULL) {
+        return 0;
+    } else {
+        *p = el->data;
+    }
+    return 1;
+}
+
+int search(List *list, int num, struct person *p) {
+    if (is_empty(list)) return 0;
+
+    Element *el = *list;
+    while (el != NULL && el->data.num != num)
+        el = el->next;
+
+    if (el == NULL) {
+        return 0;
+    } else {
+        *p = el->data;
+    }
     return 1;
 }

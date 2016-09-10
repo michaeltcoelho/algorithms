@@ -29,3 +29,7 @@ int remove_first(List *list);
 int remove_last(List *list);
 
 int remove_item(List *list, int num);
+
+int search_pos(List *list, int pos, struct person *p);
+
+int search(List *list, int num, struct person *p);
