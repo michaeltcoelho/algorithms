@@ -23,3 +23,7 @@ int prepend(List *list, struct person p);
 int append(List *list, struct person p);
 
 int ordered_insert(List *list, struct person p);
+
+int remove_first(List *list);
+
+int remove_last(List *list);

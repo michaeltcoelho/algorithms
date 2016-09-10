@@ -107,8 +107,7 @@ int ordered_insert(List *list, person_data p) {
             previous = current;
             current = current->next;
 
-        // current is null or current is less than user entry
-        if (current == *list) {
+        if (current == *list) { // current is null or current is less than user entry
             el->next = (*list);
             *list = el;
         } else {
@@ -116,5 +115,31 @@ int ordered_insert(List *list, person_data p) {
             previous->next = el;
         }
     }
+    return 1;
+}
+
+int remove_first(List *list) {
+    if (is_empty(list)) return 0;
+    Element *el = *list;
+    *list = el->next;
+    free(el);
+    return 1;
+}
+
+
+int remove_last(List *list) {
+    if (is_empty(list)) return 0;
+
+    Element *previous, *current = *list;
+    while (current->next != NULL)
+        previous = current;
+        current = previous->next;
+
+    if (current == (*list)) {
+        *list = current->next;
+    } else {
+        previous->next = current->next;
+    }
+    free(current);
     return 1;
 }
