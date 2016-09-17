@@ -19,8 +19,12 @@ int is_full(List* list);
 
 int prepend(List* list, struct person p);
 
+int append(List* list, struct person p);
+
 int ordered_insert(List* list, struct person p);
 
 int delete(List* list, int num);
 
 int get(List* list, int pos, struct person *p);
+
+void print(List* list);

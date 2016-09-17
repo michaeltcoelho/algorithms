@@ -69,7 +69,7 @@ int prepend(List* list, struct person p) {
     el->prev = NULL;
     el->next = (*list);
 
-    if (!is_empty(list))
+    if (*list != NULL)
         (*list)->prev = el;
 
     *list = el; // set el as the first element of the list
@@ -84,7 +84,7 @@ int append(List* list, struct person p) {
     el->data = p;
     el->next = NULL;
 
-    if (is_empty(list)) {
+    if (*list == NULL) {
         el->prev = NULL;
         *list = el;
     }
@@ -105,13 +105,13 @@ int ordered_insert(List* list, struct person p) {
 
     el->data = p;
 
-    if (is_empty(list)) {
+    if (*list == NULL) {
         el->prev = NULL;
         el->next = NULL;
         *list = el;
     }
-    else {
-
+    else
+    {
         Element *previous, *current = *list;
         while (current != NULL && current->data.num < p.num) {
             previous = current;
@@ -136,10 +136,10 @@ int ordered_insert(List* list, struct person p) {
 }
 
 int delete(List* list, int num) {
-    if (is_empty(list)) return 0;
+    if (list == NULL) return 0;
 
     Element *current = *list;
-    while (current != NULL && current->data.num == num)
+    while (current != NULL && current->data.num != num)
         current = current->next;
 
     if (current == NULL) // not found
@@ -173,4 +173,15 @@ int get(List* list, int pos, struct person *p) {
     else
         *p = el->data;
     return 1;
+}
+
+void print(List* list) {
+    if (list != NULL) {
+        Element* el = *list;
+        while (el != NULL) {
+            printf("%d, ", el->data.num);
+            el = el->next;
+        }
+    }
+    printf("\n");
 }
