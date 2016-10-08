@@ -11,11 +11,6 @@
     Not recommended to a large set of data.
 */
 
-void printArray(int *V, int N) {
-    for (int i = 0; i < 10; i++)
-        printf("%d, ", V[i]);
-}
-
 void insertion_sort(int *V, int N) {
     int i, j, aux;
     // start looping over V from index 1
