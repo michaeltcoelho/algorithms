@@ -9,6 +9,9 @@
         Worse Case: O(N ^ 2)
 
     Not recommended to a large set of data.
+
+    Will loop over the array from the index 1, pick it,
+    move all value greater then it on left to one place to right.
 */
 
 void insertion_sort(int *V, int N) {
