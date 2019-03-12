@@ -25,7 +25,7 @@ class LinkedList:
                 current_element = current_element.next
             current_element.next = new_element
 
-    def get_position(self, position: int) -> Element:
+    def get_element_at(self, position: int) -> Element:
         if position == 0:
             return self.head
         current_position, current_element = 0, self.head
@@ -50,7 +50,7 @@ class LinkedList:
             if previous_element:
                 previous_element.next = new_element
 
-    def show(self):
+    def show(self) -> None:
         current_element = self.head
         elements = []
         while current_element.next:
@@ -70,16 +70,16 @@ if __name__ == "__main__":
     linked_list.push(third_element)
 
     assert linked_list.head is first_element
-    assert linked_list.get_position(0) is first_element
-    assert linked_list.get_position(1) is second_element
-    assert linked_list.get_position(2) is third_element
+    assert linked_list.get_element_at(0) is first_element
+    assert linked_list.get_element_at(1) is second_element
+    assert linked_list.get_element_at(2) is third_element
 
     fourth_element = Element(4)
     linked_list.insert(fourth_element, 1)
-    assert linked_list.get_position(1) is fourth_element
+    assert linked_list.get_element_at(1) is fourth_element
 
     fifth_element = Element(5)
     linked_list.insert(fifth_element, 2)
-    assert linked_list.get_position(2) is fifth_element
+    assert linked_list.get_element_at(2) is fifth_element
 
     linked_list.show()
