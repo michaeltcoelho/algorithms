@@ -65,10 +65,11 @@ class LinkedList:
         while current_element.next and value != current_element.value:
             previous_element = current_element
             current_element = current_element.next
-        if current_element is self.head:
-            self.head = self.head.next
-        else:
-            previous_element.next = current_element.next
+        if value == current_element.value:
+            if current_element is self.head:
+                self.head = self.head.next
+            else:
+                previous_element.next = current_element.next
 
 
 if __name__ == "__main__":
