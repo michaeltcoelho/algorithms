@@ -3,11 +3,11 @@ from typing import Optional
 
 class Element:
 
-    def __init__(self, value) -> None:
+    def __init__(self, value: int) -> None:
         self.value = value
         self.next: Optional[Element] = None
-    
-    def __str__(self):
+
+    def __str__(self) -> str:
         return f'<Element(value={self.value})>'
 
 
@@ -15,6 +15,15 @@ class LinkedList:
 
     def __init__(self) -> None:
         self.head = None
+
+    def __str__(self) -> str:
+        current_element = self.head
+        elements = []
+        while current_element.next:
+            elements.append(str(current_element))
+            current_element = current_element.next
+        elements.append(str(current_element))
+        return str(elements)
 
     def push(self, new_element: Element) -> None:
         if self.head is None:
@@ -50,14 +59,16 @@ class LinkedList:
             if previous_element:
                 previous_element.next = new_element
 
-    def show(self) -> None:
+    def delete_by_value(self, value: int) -> None:
         current_element = self.head
-        elements = []
-        while current_element.next:
-            elements.append(str(current_element))
+        previous_element = None
+        while current_element.next and value != current_element.value:
+            previous_element = current_element
             current_element = current_element.next
-        elements.append(str(current_element))
-        print(elements)
+        if current_element is self.head:
+            self.head = self.head.next
+        else:
+            previous_element.next = current_element.next
 
 
 if __name__ == "__main__":
@@ -82,4 +93,5 @@ if __name__ == "__main__":
     linked_list.insert(fifth_element, 2)
     assert linked_list.get_element_at(2) is fifth_element
 
-    linked_list.show()
+    linked_list.delete_by_value(5)
+    assert linked_list.get_element_at(2) is second_element
