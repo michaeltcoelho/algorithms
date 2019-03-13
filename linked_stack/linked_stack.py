@@ -34,7 +34,12 @@ class LinkedStack:
 
     def pop(self) -> Element:
         old_head = self.head
-        self.head = old_head.next
+        if self.head is None:
+            return None
+        if self.head.next is None:
+            self.head = None
+        else:
+            self.head = old_head.next
         return old_head
 
 
@@ -48,3 +53,6 @@ if __name__ == "__main__":
     linked_stack.push(third_el)
 
     assert linked_stack.pop() is third_el
+    assert linked_stack.pop() is second_el
+    assert linked_stack.pop() is first_el
+    assert linked_stack.pop() is None
