@@ -29,9 +29,26 @@ def recursive(l, n, start=0, end=0):
         return middle
 
 
+def binary_search(arr, num):
+    start, end = 0, len(arr) - 1
+    while start <= end:
+        middle = (start + end) // 2
+        if arr[middle] > num:
+            end = middle - 1
+        elif arr[middle] < num:
+            start = middle + 1
+        else:
+            return middle
+    return -1
+
+
 if __name__ == "__main__":
     l = [1, 2, 3, 4, 5, 6, 7, 8 , 9, 10]
     assert dynamic(l, 7) == 6
     assert dynamic(l, 50) == -1
     assert recursive([1, 2, 3, 4], 3) == 2
     assert recursive(l, 50) == -1
+
+    arr = [1, 2, 3, 4, 5, 6, 7]
+    assert binary_search(arr, 5) == 4
+    assert binary_search(arr, 10) == -1
